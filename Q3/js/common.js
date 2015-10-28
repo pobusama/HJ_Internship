@@ -1,5 +1,5 @@
 /*!
- * 俱乐部查询
+ * 
  * @author reven
  * @create 15/10/28
  */
