@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*!
+ * 文件描述
+ * @author reven
+ * @create 2015-10-28 13:40
+ */
+
+a,div,p,button{
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+a{
+
+  background: red;
+}
+
+div{
+
+  background: yellowgreen;
+}
+
+p{
+
+  background: mediumpurple;
+  color: #fff;
+}
