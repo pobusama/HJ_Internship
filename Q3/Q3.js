@@ -201,6 +201,24 @@ TransformController.prototype.removeTransform = function () {
 //业务代码
 
 var oLogo = getByClass(document,'logo')[0];
-var t = new TransformController(oLogo, 'click', ['div'], 'rotate');
+var queue = 0;
+var t1 = new TransformController(oLogo, 'click', ['p'], 'rotate');
+var t2 = {};
+var t3 = {};
+t1.addTransform();
+if(queue === 0){
+    oLogo.addEventListener('click',function(){
+        t2 = new TransformController(oLogo, 'click', ['p','img'], 'rotate');
+        t2.addTransform();
+        queue++;
+    },false);
+}
+if(queue === 1){
+    oLogo.addEventListener('click',function(){
+        t3 = new TransformController(oLogo, 'click', ['p','img','div'], 'rotate');
+        t3.addTransform();
+        queue++;
+    },false);
+}
 
-t.addTransform();
+
