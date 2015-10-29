@@ -143,11 +143,13 @@ function TransformController(obj, event, tagNameArr, type) {
     this.selector = new Selector();
     this.selector.init(this.tagNameArr);
     this.aItems = this.selector.getElems();
+    this.index = 1;
     var that = this;
     this.rotate = function (ev) {
         Array.prototype.forEach.call(that.aItems, function (elem, index) {
-            elem.style.webkitTransform = 'rotateZ(-180deg)';
+            elem.style.webkitTransform = 'rotateZ('+(-180*that.index)+'deg)';
         });
+        console.log(that.index++);
         ev.preventDefault();
     };
 }
@@ -202,22 +204,28 @@ TransformController.prototype.removeTransform = function () {
 
 var oLogo = getByClass(document,'logo')[0];
 var queue = 0;
-var t1 = new TransformController(oLogo, 'click', ['p'], 'rotate');
+var t1 = new TransformController(oLogo, 'click', ['img','p'], 'rotate');
 var t2 = {};
 var t3 = {};
 t1.addTransform();
+
+
 if(queue === 0){
     oLogo.addEventListener('click',function(){
-        t2 = new TransformController(oLogo, 'click', ['p','img'], 'rotate');
+        t2 = new TransformController(oLogo, 'click', ['p','img','a'], 'rotate');
+        t2.index = queue+2;
+        t1.removeTransform();
         t2.addTransform();
-        queue++;
+        console.log('queue:'+queue++);
     },false);
 }
 if(queue === 1){
-    oLogo.addEventListener('click',function(){
-        t3 = new TransformController(oLogo, 'click', ['p','img','div'], 'rotate');
+    oLogo.addEventListener('click',function(){ 
+        t2.removeTransform(); 
+        t3 = new TransformController(oLogo, 'click', ['img'], 'rotate');
+        t3.index = queue+2;
         t3.addTransform();
-        queue++;
+        console.log('queue:'+queue++);
     },false);
 }
 
